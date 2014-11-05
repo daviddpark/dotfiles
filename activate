@@ -1,0 +1,12 @@
+function checkfile()
+{
+  if [ -e "$HOME/$1" ]
+  then
+    rm -rf "$HOME/$1";
+  fi
+  ln -s "$HOME/dotfiles/$1" $HOME;
+}
+
+checkfile ".tmux.conf"
+checkfile ".vim"
+checkfile ".vimrc"
