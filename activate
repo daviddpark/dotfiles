@@ -10,3 +10,5 @@ function checkfile()
 checkfile ".tmux.conf"
 checkfile ".vim"
 checkfile ".vimrc"
+checkfile ".profile"
+checkfile ".bash_aliases"
