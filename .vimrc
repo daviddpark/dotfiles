@@ -1,7 +1,7 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-
+set background=dark
 "set modeline
 "set ts=4 et sw=4 sts=4
 "set incsearch
