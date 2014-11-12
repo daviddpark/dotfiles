@@ -84,7 +84,11 @@ fi
 function dclean {
     if [ ! -z "$1" ]; then
         if [ "$1" = "restart" ]; then
-	    sudo service docker restart
+	    if [ `uname` = 'Linux' ]; then
+	        sudo service docker restart
+	    else
+		ssh dpark@10.211.55.4 sudo service docker restart
+	    fi
             sleep 3
         fi
     fi
@@ -108,4 +112,8 @@ function dclean {
 
 function dupdate {
   docker images | cut -f1 -d ' ' | sort | uniq | grep -v '<none>' | grep -v 'REPOSITORY' | xargs -L1 docker pull
+}
+
+function pypi() {
+    /usr/bin/scp -vvvv -i "/Users/dpark/.ssh/lillycoi_id_rsa" -o StrictHostKeyChecking=no "$@" user@pypi.lillycoi.com:/opt/pypi_repo/ ;
 }
