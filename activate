@@ -7,9 +7,10 @@ function checkfile()
   ln -s "$HOME/dotfiles/$1" $HOME;
 }
 
+checkfile ".bash_aliases"
+checkfile ".gitconfig"
+checkfile ".lein"
+checkfile ".profile"
 checkfile ".tmux.conf"
 checkfile ".vim"
 checkfile ".vimrc"
-checkfile ".profile"
-checkfile ".bash_aliases"
-checkfile ".lein"
