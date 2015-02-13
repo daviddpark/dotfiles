@@ -15,14 +15,12 @@ set hlsearch
 :nmap <C-p> :bprev<CR>
 
 autocmd BufNewFile,BufRead *.json set ft=javascript
-set statusline=%h         " Help buffer flag
+set statusline=%t         " tail of the filename
+set statusline+=%h        " Help buffer flag
 set statusline+=%m        " Modified flag
-set statusline+=%f        " Path to the file
-set statusline+=%c        " Column number
-set statusline+=/         " Separator
-set statusline+=%p        " % of lines through file
-set statusline+=/         " Separator
+set statusline+=%r        " read-only flag
 set statusline+=%=        " Switch to the right side
-set statusline+=%l        " Current line
-set statusline+=/         " Separator
-set statusline+=%L        " Total lines
+set statusline+=%c,       " Column number
+set statusline+=%l/%L     " Current line / Total Lines
+set statusline+=\ %P      " Percent through file
+set laststatus=2          " Persistent statusline

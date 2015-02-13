@@ -121,3 +121,6 @@ function dupdate {
 function pypi() {
     /usr/bin/scp -vvvv -i "/Users/dpark/.ssh/lillycoi_id_rsa" -o StrictHostKeyChecking=no "$@" user@pypi.lillycoi.com:/opt/pypi_repo/ ;
 }
+
+
+export LEIN_FAST_TRAMPOLINE=y
