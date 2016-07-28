@@ -32,7 +32,7 @@
 
 (or (file-exists-p package-user-dir) (package-refresh-contents))
 
-(ensure-package-installed 'magit 'cider 'ess 'js2-mode 'ac-js2 'yasnippet 'auto-complete)
+(ensure-package-installed 'ag 'magit 'cider 'ess 'js2-mode 'ac-js2 'yasnippet 'auto-complete)
 
 (package-initialize)
 
@@ -75,6 +75,9 @@
 
 (add-hook 'js-mode-hook 'paredit-nonlisp)
 
-(eval-after-load 'js
-  '(progn (define-key js-mode-map "{" 'paredit-open-curly)
-	  (define-key js-mode-map "}" 'paredit-close-curly-and-newline)))
+;;(eval-after-load 'js
+;;  '(progn (define-key js-mode-map "{" 'paredit-open-curly)
+;;	  (define-key js-mode-map "}" 'paredit-close-curly-and-newline)))
+;;I can do magit...
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
