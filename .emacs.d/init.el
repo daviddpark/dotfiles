@@ -1,3 +1,5 @@
+(setq-default indent-tabs-mode nil)
+
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
@@ -5,6 +7,8 @@
              '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;;(add-to-list 'package-archives
+;;             '("elpa" . "http://elpa.gnu.org/packages/") t)
 (package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -32,22 +36,30 @@
 
 (or (file-exists-p package-user-dir) (package-refresh-contents))
 
-(ensure-package-installed 'ag 'magit 'cider 'ess 'js2-mode 'ac-js2 'yasnippet 'auto-complete)
+(ensure-package-installed 'ag 'magit 'cider 'ess 'js2-mode 'ac-js2 'yasnippet 'auto-complete 'paxedit 'company)
 
 (package-initialize)
 
 ;; Cider Configuration
 (add-hook 'cider-mode-hook #'eldoc-mode)
 (setq nrepl-log-messages t)
-;;(setq nrepl-hide-special-buffers t)
+;; company mode for completion
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
+;; (setq nrepl-hide-special-buffers t)
 
 
 ;; Show corresponding sexp delimiter
 (show-paren-mode 1)
 
 ;; clj files get clojure-mode, paredit-mode, paxedit-mode
+(require 'paredit)
+(require 'paxedit)
 (add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+(add-hook 'lisp-mode-hook #'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook #'paredit-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'paxedit-mode)
 (add-hook 'javascript-mode-hook 'paredit-mode)
 ;;(add-to-list 'auto-mode-alist '("\\.Rmd$" . inferior-ess-mode))
@@ -81,3 +93,6 @@
 ;;I can do magit...
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+
+(setq tab-width 2)
+(setq default-tab-width 2)
